@@ -133,7 +133,7 @@ fn get_instance(
 
 ```
 
-### - \<MyClass as JsClass\>::new_instance
+### - \<T as JsClass\>::new_instance
 
 A faster way to instanciate a JS class directly from Rust:
 
@@ -155,6 +155,6 @@ Note that you will have to define `default_properties`
 function.  
 Otherwise your class won't have properties.  
 
-Also, `new_instance` doesn't convert the arguments  
+Also, `<T as JsClass>::new_instance` doesn't convert the arguments
 from/to javascript values.  
 

@@ -25,6 +25,7 @@ register_module!(|module: ModuleBuilder| {
                   .with_method("add", MyStruct::add)
                   .with_accessor("a", MyStruct::get_a)
           })
+          .build()
 });
 ```
 In this example, your module with be defined in JS as:
