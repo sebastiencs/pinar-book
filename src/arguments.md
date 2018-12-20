@@ -27,6 +27,21 @@ struct MyCustomType {
 // arguments
 ```
 
+### Javascript types
+
+If you want to have access to the javascript values,  
+without converting them to Rust, you can specify the JS  
+values that `Pinar` provides.  
+
+
+```rust, no_run
+fn my_method1(s: JsObject) {}
+
+fn my_method2((a, b): (i64, JsBigInt)) {}
+
+fn my_method3(args: (JsNumber, JsExternal)) {}
+```
+
 ### - Multiple arguments
 
 To handle multiple arguments, you must use a tuple.  
@@ -68,22 +83,6 @@ register_module!(my_module, |module: ModuleBuilder| {
 });
 
 ```
-
-### Javascript types
-
-If you want to have access to the javascript values,  
-without converting them to Rust, you can specify the JS  
-values that `Pinar` provides.  
-
-
-```rust, no_run
-fn my_method1(s: JsObject) {}
-
-fn my_method2((a, b): (i64, JsBigInt)) {}
-
-fn my_method3(args: (JsNumber, JsExternal)) {}
-```
-
 
 ### Special arguments
 

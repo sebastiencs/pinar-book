@@ -1,6 +1,6 @@
 # Overview
 
-Pinar is a library which make writing native node modules in Rust easy.
+Pinar is a library to write native node modules in Rust.
 
 This book is in development, pull requests are welcome.
 
@@ -39,8 +39,8 @@ fn get_object(_: ()) -> HashMap<i64, &'static str> {
     map
 }
 
-// You can also use the macro derive ToJs to implement
-// the trait easily
+// You can use the macro derive ToJs to implement
+// the trait automatically
 
 #[derive(Serialize, Deserialize, ToJs, FromArguments)]
 struct MyStruct {
@@ -55,16 +55,18 @@ fn custom_type(_a: MyStruct) -> MyStruct {
     }
 }
 
-// Call javascript functions from rust is possible
+// Call javascript functions from rust:
 fn call_function((f1, f2): (JsFunction, JsFunction)) {
     // 1 argument:
     f1.call("my_parameter");
+    
     // 3 arguments, with a tuple:
     f1.call((1, "hello", vec![1, 2, 3]));
+    
     f2.call(Box::new(10));
 }
 
-// You can also create javascript classes
+// You can create javascript classes
 // by implementing the trait JsClass
 impl JsClass for MyStruct {
     const CLASSNAME: &'static str = "MyStruct";
@@ -86,26 +88,18 @@ impl MyStruct {
     }
 }
 
-// You can create instance of the class in Rust 
-// (or Javascript)
-fn create_class(env: Env) -> Result<JsObject> {
-    MyStruct::new_instance(&env, (70, String::from("test")))
-}
-
-register_module!(sebastien, |module: ModuleBuilder| {
+register_module!(|module: ModuleBuilder| {
     module.with_function("one_arg", one_arg)
           .with_function("three_args", three_args)
           .with_function("add", add)
           .with_function("get_object", get_object)
           .with_function("custom_type", custom_type)
           .with_function("call_function", call_function)
-          .with_function("create_class", create_class)
           .with_class("my_struct", || {
               ClassBuilder::<MyStruct>::start_build()
                   .with_method("add", MyStruct::add)
                   .with_accessor("a", MyStruct::get_a)
           })
-          .build()
 });
 
 ```
