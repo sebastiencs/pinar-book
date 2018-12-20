@@ -3,3 +3,4 @@ authors = ["Sebastien Chapuis"]
 multilingual = false
 src = "src"
 title = "Pinar"
+default-theme = "navy"
