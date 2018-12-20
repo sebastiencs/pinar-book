@@ -10,7 +10,7 @@ This snippet will introduce you to the basic features of
 Pinar, please continue to read the book for more details
 and features
 
-```rust,no_run
+```rust, no_run
 // Exported functions to Javascript
 
 // The argument is converted directly to a Rust String
