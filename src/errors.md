@@ -13,18 +13,18 @@ the trait `Fail`.
 ```rust, no_run
 #[derive(Fail, Debug)]
 pub enum MyError {
-    #[fail(display = "Invalid input.")]
+    #[fail(display = "Invalid input !")]
     WrongInput,
-    #[fail(display = "Network error.")]
+    #[fail(display = "Network error !")]
     NetworkError,
 }
 
-fn create() -> JsResult<()> {
-    Err(MyError::NetworkError.into())
+fn create() -> Result<(), MyError> {
+    Err(MyError::NetworkError)
 }
 
 // When called from Javascript, this function will throw
-// an exception with the error message "Network error."
+// an exception with the error message "Network error !"
 fn method() -> JsResult<()> {
     create()?;
     Err(MyError::WrongInput.into())
@@ -38,6 +38,7 @@ To have more control on the exception, you can implement the
 trait `JsError`:
 
 ```rust, no_run
+// The JsError trait is defined as follow
 pub trait JsError: Fail + JsErrorAsFail {
     fn get_msg(&self) -> String {
         format!("{}", self)
