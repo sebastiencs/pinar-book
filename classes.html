@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Classes - Pinar</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><a href="cargo.html"><strong aria-hidden="true">2.</strong> Setup</a></li><li><a href="arguments.html"><strong aria-hidden="true">3.</strong> Arguments</a></li><li><a href="to_js.html"><strong aria-hidden="true">4.</strong> ToJs</a></li><li><a href="basic_types.html"><strong aria-hidden="true">5.</strong> JS Basic Types</a></li><li><a href="classes.html" class="active"><strong aria-hidden="true">6.</strong> Classes</a></li><li><a href="references.html"><strong aria-hidden="true">7.</strong> References</a></li><li><a href="errors.html"><strong aria-hidden="true">8.</strong> Errors</a></li><li><a href="threading.html"><strong aria-hidden="true">9.</strong> Multi-threading</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Pinar</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#classes" id="classes"><h1>Classes</h1></a>
+<p>You can create JS classes from Rust.<br />
+Every Rust types that implement the trait <code>JsClass</code><br />
+can be use as a JS class.</p>
+<p>The trait is defined as follow:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait JsClass : Sized + 'static {
+    // The name of this class in JS
+    const CLASSNAME: &amp;'static str;
+    
+    // The type that the constructor of this class
+    // will receive as arguments.
+    // Example: (String, Arc&lt;usize&gt;)
+    type ArgsConstructor: FromArguments;
+
+    // Static function called to create the class
+    fn constructor(args: Self::ArgsConstructor) -&gt; Result&lt;Self&gt; ;
+
+    // Optional function to define default properties
+    // of this class
+    fn default_properties(builder: ClassBuilder&lt;Self&gt;) -&gt; ClassBuilder&lt;Self&gt; { builder }
+}
+#}</code></pre></pre>
+<p>An example of implemention to <code>JsClass</code>:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+struct MyClass {
+    state: Arc&lt;State&gt;,
+    n: i64
+}
+
+impl MyClass {
+    fn inc(&amp;mut self) {
+        self.n += 1;
+    }
+    // This function is used to set/get Self::n
+    fn accessor_n(&amp;mut self, new_n: Option&lt;i64&gt;) -&gt; i64 {
+        if let Some(new_n) = new_n {
+            self.n = new_n;
+        }
+        self.n
+    }
+    fn sample(&amp;mut self, args: (String, MyCustomType)) {}
+}
+
+impl JsClass for MyClass {
+    const CLASSNAME: &amp;'static str = &quot;MyRustClass&quot;;
+    
+    type ArgsConstructor = (Arc&lt;State&gt;, i64);
+
+    fn constructor((state, n): Self::ArgsConstructor)
+        -&gt; Result&lt;Self&gt;
+    {
+        Ok(MyClass { state, n })
+    }
+
+    fn default_properties(builder: ClassBuilder&lt;Self&gt;)
+        -&gt; ClassBuilder&lt;Self&gt;
+    {
+        builder.with_method(&quot;increment&quot;, MyClass::inc)
+               .with_method(&quot;sample&quot;, MyClass::sample)
+               .with_accessor(&quot;n&quot;, MyClass::accessor_n)
+    }
+    
+}
+
+#}</code></pre></pre>
+<p>There are 2 ways to make a new instance of this class:</p>
+<a class="header" href="#--classbuilder" id="--classbuilder"><h3>- ClassBuilder</h3></a>
+<p><code>ClassBuilder</code> allows you to build a <code>JsClass</code> and get<br />
+its constructor.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn create_class(env: &amp;Env) -&gt; JsResult&lt;JsFunction&gt; {
+    let constructor = ClassBuilder::&lt;MyClass&gt;::start_build()
+          .with_method(&quot;increment&quot;, MyClass::inc)
+          .with_method(&quot;sample&quot;, MyClass::sample)
+          .with_accessor(&quot;n&quot;, MyClass::accessor_n)
+          .create(env)?;
+    // Note that with_[method,accessor] are not necessary
+    // in our case because we implemented `default_properties`
+    // for our class. But I still write them for the
+    // example
+    
+    constructor
+}
+#}</code></pre></pre>
+<p>The <code>JsFunction</code> that <code>create_class</code> returns can be used in
+JS or Rust:</p>
+<a class="header" href="#from-js" id="from-js"><h5>From JS</h5></a>
+<pre><code class="language-javascript no_run">const module = require(&quot;./module.node&quot;);
+
+const MyClass = module.create_class();
+// Get the constructor
+
+const external_value = module.get_state();
+// The function `get_state` returns an `Arc&lt;State&gt;`
+
+const instance = new MyClass(external_value, 10);
+// The `constructor` function from `JsClass` trait has been
+// called, and we now have an instance of the class
+
+instance.increment();
+console.log(instance.n); // 11
+instance.n = 200;
+</code></pre>
+<a class="header" href="#from-rust" id="from-rust"><h5>From Rust</h5></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn get_instance(
+    env: &amp;Env,
+    state: Arc&lt;State&gt;
+) -&gt; JsResult&lt;JsObject&gt;
+{
+    let constructor: JsFunction = create_class(env)?;
+    constructor.new_instance((state, 10))
+    // Call the `constructor` function of the `JsClass`
+    // trait and return a new instance of the class
+}
+
+#}</code></pre></pre>
+<a class="header" href="#--t-as-jsclassnew_instance" id="--t-as-jsclassnew_instance"><h3>- &lt;T as JsClass&gt;::new_instance</h3></a>
+<p>A faster way to instanciate a JS class directly from Rust:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn get_instance(env: Env, state: Arc&lt;State&gt;)
+    -&gt; JsResult&lt;JsObject&gt;
+{
+    MyClass::new_instance(&amp;env, (state, 10))
+    // Build the class &amp; call the constructor directly
+    // Returns an instance of the class
+}
+
+#}</code></pre></pre>
+<p>With this method, you don't need to &quot;build&quot; the class<br />
+and can instantiate it directly.</p>
+<p>Note that you will have to define <code>default_properties</code>
+function.<br />
+Otherwise your class won't have properties.</p>
+<p>Also, <code>&lt;T as JsClass&gt;::new_instance</code> doesn't convert the arguments
+from/to javascript values.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="basic_types.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="basic_types.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

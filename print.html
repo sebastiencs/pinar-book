@@ -1,0 +1,928 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pinar</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><a href="cargo.html"><strong aria-hidden="true">2.</strong> Setup</a></li><li><a href="arguments.html"><strong aria-hidden="true">3.</strong> Arguments</a></li><li><a href="to_js.html"><strong aria-hidden="true">4.</strong> ToJs</a></li><li><a href="basic_types.html"><strong aria-hidden="true">5.</strong> JS Basic Types</a></li><li><a href="classes.html"><strong aria-hidden="true">6.</strong> Classes</a></li><li><a href="references.html"><strong aria-hidden="true">7.</strong> References</a></li><li><a href="errors.html"><strong aria-hidden="true">8.</strong> Errors</a></li><li><a href="threading.html"><strong aria-hidden="true">9.</strong> Multi-threading</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Pinar</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
+<p>Pinar is a library to write native node modules in Rust.</p>
+<p>This book is in development, pull requests are welcome.</p>
+<a class="header" href="#small-example" id="small-example"><h2>Small example</h2></a>
+<p>This snippet will introduce you to the basic features of
+Pinar, please continue to read the book for more details
+and features</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// Exported functions to Javascript
+
+// The argument is converted directly to a Rust String
+fn one_arg(arg: String) {
+    println!(&quot;received one argument: {}&quot;, arg);
+}
+
+// Multiple and optional arguments
+fn three_args(s: String, n: i64, o: Option&lt;String&gt;) {
+    println!(&quot;three_args: {:?} {:?} {:?}&quot;, s, n, o);
+}
+
+// Return values are converted to javascript automatically
+// as long as they implement the trait ToJs
+fn add(n1: usize, n2: usize) -&gt; usize {
+    n1 + n2
+}
+
+// All basic Rust types implements the trait ToJs
+fn get_object() -&gt; HashMap&lt;i64, &amp;'static str&gt; {
+    let mut map = HashMap::new();
+    map.insert(1, &quot;hello&quot;);
+    map.insert(2, &quot;from&quot;);
+    map.insert(3, &quot;rust&quot;);
+    map
+}
+
+// You can use the macro derive ToJs to implement
+// the trait automatically
+
+#[derive(Serialize, Deserialize, ToJs, FromArguments)]
+struct MyStruct {
+    a: i64,
+    b: String,
+}
+
+fn custom_type(_a: MyStruct) -&gt; MyStruct {
+    MyStruct { 
+        a: 10,
+        b: &quot;my_struct&quot;.to_string()
+    }
+}
+
+// Call javascript functions from rust:
+fn call_function(f1: JsFunction, f2: JsFunction) {
+    // 1 argument:
+    f1.call(&quot;my_parameter&quot;);
+    
+    // 3 arguments, with a tuple:
+    f1.call((1, &quot;hello&quot;, vec![1, 2, 3]));
+    
+    f2.call(Box::new(10));
+}
+
+// You can create javascript classes
+// by implementing the trait JsClass
+impl JsClass for MyStruct {
+    const CLASSNAME: &amp;'static str = &quot;MyStruct&quot;;
+    type ArgsConstructor = (i64, String);
+
+    fn constructor(arg: Self::ArgsConstructor) -&gt; Result&lt;Self&gt; {
+        Ok(MyStruct{ a: arg.0, b: arg.1 })
+    }
+}
+
+impl MyStruct {
+    // These functions will be callable from javascript
+    fn add(&amp;mut self, n: usize) -&gt; usize {
+        self.a += n;
+        self.a
+    }
+    fn get_a(&amp;mut self, _: Option&lt;usize&gt;) -&gt; usize {
+        self.a
+    }
+}
+
+register_module!(|module: ModuleBuilder| {
+    module.with_function(&quot;one_arg&quot;, one_arg)
+          .with_function(&quot;three_args&quot;, three_args)
+          .with_function(&quot;add&quot;, add)
+          .with_function(&quot;get_object&quot;, get_object)
+          .with_function(&quot;custom_type&quot;, custom_type)
+          .with_function(&quot;call_function&quot;, call_function)
+          .with_class(&quot;my_struct&quot;, || {
+              ClassBuilder::&lt;MyStruct&gt;::start_build()
+                  .with_method(&quot;add&quot;, MyStruct::add)
+                  .with_accessor(&quot;a&quot;, MyStruct::get_a)
+          })
+          .build()
+});
+
+#}</code></pre></pre>
+<p>From javascript:</p>
+<pre><code class="language-javascript no_run">const module = require(&quot;./module.node&quot;);
+
+module.one_arg(&quot;hello&quot;);
+// Print 'received one argument: hello'
+
+module.three_args(&quot;hello&quot;, 10);
+// Print three_args: (hello, 10, None)'
+
+console.log(module.add(1, 3));
+// 4
+
+console.log(module.get_object());
+// { 1: &quot;hello&quot;, 2: &quot;from&quot;, 3: &quot;rust&quot; }
+
+console.log(module.custom_type({ a: 1, b: &quot;abc&quot; )));
+// { a: 10, b: &quot;my_struct&quot; } 
+
+module.call_function(() =&gt; {}, () =&gt; {});
+
+const c = new module.my_struct(10, &quot;js&quot;);
+// create instance of the class
+
+c.add(100);
+// call the rust function
+console.log(c.a);
+// c.a calls the rust function MyStruct::get_a
+// 110
+</code></pre>
+<a class="header" href="#setup" id="setup"><h1>Setup</h1></a>
+<p>You will need to insert this in your <code>Cargo.toml</code></p>
+<pre><code class="language-toml">[lib]
+crate-type = [&quot;cdylib&quot;]
+
+[profile.dev]
+panic = &quot;unwind&quot;
+
+[profile.release]
+panic = &quot;unwind&quot;
+</code></pre>
+<p>Use the macro <code>register_module</code> in your <code>src/lib.rs</code> to export functions and classes</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// Example:
+register_module!(|module: ModuleBuilder| {
+    module.with_function(&quot;one_arg&quot;, one_arg)
+          .with_function(&quot;three_args&quot;, three_args)
+          .with_class(&quot;my_struct&quot;, || {
+              ClassBuilder::&lt;MyStruct&gt;::start_build()
+                  .with_method(&quot;add&quot;, MyStruct::add)
+                  .with_accessor(&quot;a&quot;, MyStruct::get_a)
+          })
+          .build()
+});
+#}</code></pre></pre>
+<p>In this example, your module with be defined in JS as:</p>
+<pre><code class="language-javascript">{
+    one_arg, // function
+    three_args, // function
+    my_struct // class constructor
+}
+</code></pre>
+<a class="header" href="#arguments" id="arguments"><h1>Arguments</h1></a>
+<a class="header" href="#--javascript-to-rust" id="--javascript-to-rust"><h3>- Javascript to Rust</h3></a>
+<p>Arguments are automatically converted to Rust values.<br />
+The Rust types need to implement the trait <code>FromArguments</code></p>
+<p>All basic Rust type implement this trait.<br />
+<code>Pinar</code> provides a macro derive to implement the trait for your
+customs types:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Deserialize)]
+enum MyEnum {
+    S(String),
+    N(usize)
+}
+
+#[derive(Deserialize, FromArguments)]
+struct MyCustomType {
+    a: i64,
+    b: String,
+    c: MyEnum
+}
+// You can now receive MyCustomType in your function
+// arguments
+#}</code></pre></pre>
+<a class="header" href="#javascript-types" id="javascript-types"><h3>Javascript types</h3></a>
+<p>If you want to have access to the javascript values,<br />
+without converting them to Rust, you can specify the JS<br />
+values that <code>Pinar</code> provides.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn my_method1(s: JsObject) {}
+
+fn my_method2(a: i64, b: JsBigInt) {}
+
+fn my_method3(n: JsNumber, e: JsExternal) {}
+#}</code></pre></pre>
+<a class="header" href="#--multiple-arguments" id="--multiple-arguments"><h3>- Multiple arguments</h3></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// 1 argument
+fn my_method1(s: String) {}
+
+// 3 argument
+fn my_method2(a: i64, b: i64, c: MyCustomType) {}
+
+fn my_method3(a: Vec&lt;MyCustomType&gt;, b: i64) {}
+
+// Optional arguments
+// You can call this function from js with or without a 2nd arg
+fn my_method4(a: i64, b: Option&lt;i64&gt;) {}
+
+// With 0 argument:
+fn my_method5() {}
+#}</code></pre></pre>
+<a class="header" href="#overloading" id="overloading"><h3>Overloading</h3></a>
+<p>You can overload a function that can receive different
+arguments:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method1(s: String) {}
+
+fn method2(a: i64, b: i64) {}
+
+register_module!(my_module, |module: ModuleBuilder| {
+    module.with_function(&quot;my_function&quot;, method1)
+          .with_function(&quot;my_function&quot;, method2)
+    // 'my_function' correspond to the Rust functions
+    // method1 and method2. The first function that
+    // match the argument will be called
+});
+
+#}</code></pre></pre>
+<a class="header" href="#special-arguments" id="special-arguments"><h3>Special arguments</h3></a>
+<a class="header" href="#env" id="env"><h4>Env</h4></a>
+<p>The <code>Env</code> argument give you access to some methods<br />
+to manipulate javascript values.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn my_method1(env: Env, bigint: JsBigInt)
+    -&gt; JsResult&lt;()&gt;
+{
+    env.throw(&quot;some error&quot;)
+}
+#}</code></pre></pre>
+<a class="header" href="#jsthis" id="jsthis"><h4>JsThis</h4></a>
+<p><code>JsThis</code> is the <code>this</code> of the function. It dereferences<br />
+to a <code>JsAny</code>.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn my_method1(env: Env, number: JsNumber, this: JsThis)
+{
+    let this: JsObject = this.as_jsobject().unwrap();
+}
+#}</code></pre></pre>
+<p>Note: For <code>Env</code> and <code>JsThis</code>, their place in the arguments<br />
+list isn't relevant.</p>
+<a class="header" href="#tojs" id="tojs"><h1>ToJs</h1></a>
+<p>The trait <code>ToJs</code> allows you to convert Rust values to JS values automatically.<br />
+This apply to returns values of your functions, but also to parameters
+of many functions that <code>Pinar</code> provides.</p>
+<p>Similar to <code>FromArguments</code>, there is a macro derive to implement the
+trait easily:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Serialize, ToJs)]
+struct MyCustomType {
+    a: i64,
+    b: i64,
+}
+#}</code></pre></pre>
+<a class="header" href="#--return-value" id="--return-value"><h3>- Return value</h3></a>
+<p>You can now return <code>MyCustomType</code> from your functions, and it will<br />
+be converted to javascript.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn custom_type() -&gt; MyCustomType {
+    MyCustomType { a: 1, b: 2 } 
+}
+
+fn array() -&gt; Vec&lt;usize&gt; {
+    vec![1, 2, 3]
+}
+#}</code></pre></pre>
+<a class="header" href="#--pinar-functions" id="--pinar-functions"><h3>- Pinar functions</h3></a>
+<p>The trait <code>ToJs</code> is heavily used in <code>Pinar</code> functions,
+for example:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn modify_object(obj: JsObject) -&gt; JsResult&lt;()&gt; {
+    obj.set(&quot;my_prop&quot;, MyCustomType { a: 1, b: 2 })?;
+    // Set the object property with MyCustomType, because
+    // it implement ToJs
+    
+    obj.set(&quot;other_prop&quot;, Arc::new(10))?;
+    // Arc&lt;_&gt; implements ToJs, it is converted to a 
+    // JsExternal value
+    
+    obj.set(&quot;text&quot;, &quot;some text abc&quot;)?;
+    // &amp;str implement ToJs and is converted to a JS
+    // String
+    Ok(())
+}
+
+fn call(fun: JsFunction) -&gt; JsResult&lt;()&gt; {
+    fun.call((
+        HashMap::new(),
+        MyCustomType { a: 1, b: 2 }, 
+        vec![1, 2, 3]
+    ))?;
+    // All of these arguments implement ToJs
+    Ok(())
+}
+#}</code></pre></pre>
+<a class="header" href="#basic-types" id="basic-types"><h1>Basic Types</h1></a>
+<p><code>Pinar</code> provides types for basic JS types, for a complete
+list of their methods, please see the API documentation.</p>
+<a class="header" href="#jsstring" id="jsstring"><h3>JsString</h3></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method(string: JsString) -&gt; JsResult&lt;()&gt; {
+    let s: String = string.to_rust()?;
+    Ok(())
+}
+#}</code></pre></pre>
+<a class="header" href="#jsobject" id="jsobject"><h3>JsObject</h3></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method(obj: JsObject) -&gt; JsResult&lt;()&gt; {
+    let value: JsAny = obj.get(&quot;my_prop&quot;)?;
+    obj.set(&quot;other_prop&quot;, HashMap::new())?;
+    obj.set(&quot;abc&quot;, &quot;cba&quot;)?;
+    obj.set(12, vec![1, 2, 3])?;
+    obj.has_property(&quot;test&quot;)?;
+    Ok(())
+}
+#}</code></pre></pre>
+<a class="header" href="#jsarray" id="jsarray"><h3>JsArray</h3></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method(array: JsArray) -&gt; JsResult&lt;()&gt; {
+    let value: JsAny = array.get(0)?;
+    array.set(0, HashMap::new())?;
+    array.set(1, vec![1, 2, 3])?;
+    
+    for value in array.iter()? {
+        ...
+    }
+    
+    Ok(())
+}
+#}</code></pre></pre>
+<a class="header" href="#jsnumber" id="jsnumber"><h3>JsNumber</h3></a>
+<a class="header" href="#jssymbol" id="jssymbol"><h3>JsSymbol</h3></a>
+<a class="header" href="#jsexternal" id="jsexternal"><h3>JsExternal</h3></a>
+<p><code>JsExternal</code> represents an external value.<br />
+From the Node API documentation:</p>
+<pre><code>This is used to pass external data through JavaScript
+code, so it can be retrieved later by native code
+</code></pre>
+<p>A <code>JsExternal</code> can be created with either a <code>Box</code>, <code>Rc</code> or an <code>Arc</code>.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn return_external() -&gt; Box&lt;usize&gt; {
+    Box::new(10) // This is converted to a JsExternal
+}
+fn call_with_external(fun: JsFunction) -&gt; JsResult&lt;()&gt; {
+    fun.call((&quot;hey&quot;, Arc::new(10)))?;
+}
+#}</code></pre></pre>
+<p>In brief, everywhere a <code>ToJs</code> trait is expected, if you pass a <code>Box</code>,
+<code>Rc</code> or <code>Arc</code>, it is converted to a <code>JsExternal</code>.</p>
+<p>They are different ways to retrieve the external value.</p>
+<p>First, the tedious way:<br />
+<code>JsExternal</code> has three methods <code>take_box</code>, <code>get_rc</code> and <code>get_arc</code>.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// Let's consider that the external value is a Box&lt;String&gt;
+// JsExternal::take_box returns a JsResult&lt;Option&lt;Box&lt;T&gt;&gt;&gt;
+fn external(external: JsExternal) {
+    let value = external.take_box::&lt;String&gt;()?;
+    // value is Some(Box&lt;String&gt;)
+    
+    let value = external.take_box::&lt;String&gt;()?;
+    // The box has been taken, it's not possible to retrieve it.
+    // value is None
+    
+    external.get_rc::&lt;String&gt;()?;
+    // This panics, the external value is not a Rc
+    
+    external.take_box::&lt;usize&gt;()?;
+    // This panics, the external value is not a usize
+}
+
+// Let's consider that the external value is a Rc&lt;usize&gt;
+// JsExternal::get_rc returns a JsResult&lt;Rc&lt;T&gt;&gt;
+fn external(external: JsExternal) {
+    let value = external.get_rc::&lt;usize&gt;()?;
+    // value is a Rc&lt;usize&gt;
+    
+    let value = external.get_rc::&lt;usize&gt;()?;
+    // value is another Rc&lt;usize&gt;
+    
+    external.take_box::&lt;usize&gt;()?; // panic
+    external.get_rc::&lt;String&gt;()?; // panic
+}
+#}</code></pre></pre>
+<p>Or the easy way:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// Here the argument will be converted directly from a 
+// JsExternal to an Arc&lt;usize&gt;
+// It will panic if the external value is not a Arc&lt;usize&gt;
+fn external_arg(external: Arc&lt;usize&gt;) {
+}
+#}</code></pre></pre>
+<p>In all cases, it will panic if you try to extract a different
+types (either the inner type or if it's a <code>Box</code> and you try to get a <code>Rc</code> or <code>Arc</code>)</p>
+<a class="header" href="#jsfunction" id="jsfunction"><h3>JsFunction</h3></a>
+<p>Call JS functions from Rust:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method(fun: JsFunction) -&gt; JsResult&lt;()&gt; {
+    fun.call(&quot;some_text&quot;)?; // 1 arg
+    
+    fun.call((1, 2, &quot;text&quot;, vec![10, 50], Box::new(21)))?;
+    // You can call a function with differents arguments
+    // using a tuple
+    // Each argument have to implement ToJs
+    
+    fun.call(())?;
+    // If no argument, you need to use an empty tuple
+    
+    fun.call_with_this(HashMap::new(), &quot;hello&quot;)?;
+    // The `this` of the function will be a empty object
+    
+    fun.new_instance((1, 2))?;
+    // In case the JsFunction represent a constructor, you
+    // can create an instance with `new_instance`
+    
+    Ok(())
+}
+#}</code></pre></pre>
+<a class="header" href="#jsundefined" id="jsundefined"><h3>JsUndefined</h3></a>
+<a class="header" href="#jsnull" id="jsnull"><h3>JsNull</h3></a>
+<a class="header" href="#jsboolean" id="jsboolean"><h3>JsBoolean</h3></a>
+<a class="header" href="#jsbigint" id="jsbigint"><h3>JsBigInt</h3></a>
+<a class="header" href="#jsany" id="jsany"><h3>JsAny</h3></a>
+<p><code>JsAny</code> is a special type. It's an enum representing all kinds
+of JS values:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+pub enum JsAny&lt;'e&gt; {
+    String(JsString&lt;'e&gt;),
+    Object(JsObject&lt;'e&gt;),
+    Array(JsArray&lt;'e&gt;),
+    Number(JsNumber&lt;'e&gt;),
+    Symbol(JsSymbol&lt;'e&gt;),
+    External(JsExternal&lt;'e&gt;),
+    Function(JsFunction&lt;'e&gt;),
+    Undefined(JsUndefined&lt;'e&gt;),
+    Null(JsNull&lt;'e&gt;),
+    Boolean(JsBoolean&lt;'e&gt;),
+    BigInt(JsBigInt&lt;'e&gt;),
+}
+#}</code></pre></pre>
+<p>See the API documentation for more details.</p>
+<a class="header" href="#classes" id="classes"><h1>Classes</h1></a>
+<p>You can create JS classes from Rust.<br />
+Every Rust types that implement the trait <code>JsClass</code><br />
+can be use as a JS class.</p>
+<p>The trait is defined as follow:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait JsClass : Sized + 'static {
+    // The name of this class in JS
+    const CLASSNAME: &amp;'static str;
+    
+    // The type that the constructor of this class
+    // will receive as arguments.
+    // Example: (String, Arc&lt;usize&gt;)
+    type ArgsConstructor: FromArguments;
+
+    // Static function called to create the class
+    fn constructor(args: Self::ArgsConstructor) -&gt; Result&lt;Self&gt; ;
+
+    // Optional function to define default properties
+    // of this class
+    fn default_properties(builder: ClassBuilder&lt;Self&gt;) -&gt; ClassBuilder&lt;Self&gt; { builder }
+}
+#}</code></pre></pre>
+<p>An example of implemention to <code>JsClass</code>:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+struct MyClass {
+    state: Arc&lt;State&gt;,
+    n: i64
+}
+
+impl MyClass {
+    fn inc(&amp;mut self) {
+        self.n += 1;
+    }
+    // This function is used to set/get Self::n
+    fn accessor_n(&amp;mut self, new_n: Option&lt;i64&gt;) -&gt; i64 {
+        if let Some(new_n) = new_n {
+            self.n = new_n;
+        }
+        self.n
+    }
+    fn sample(&amp;mut self, args: (String, MyCustomType)) {}
+}
+
+impl JsClass for MyClass {
+    const CLASSNAME: &amp;'static str = &quot;MyRustClass&quot;;
+    
+    type ArgsConstructor = (Arc&lt;State&gt;, i64);
+
+    fn constructor((state, n): Self::ArgsConstructor)
+        -&gt; Result&lt;Self&gt;
+    {
+        Ok(MyClass { state, n })
+    }
+
+    fn default_properties(builder: ClassBuilder&lt;Self&gt;)
+        -&gt; ClassBuilder&lt;Self&gt;
+    {
+        builder.with_method(&quot;increment&quot;, MyClass::inc)
+               .with_method(&quot;sample&quot;, MyClass::sample)
+               .with_accessor(&quot;n&quot;, MyClass::accessor_n)
+    }
+    
+}
+
+#}</code></pre></pre>
+<p>There are 2 ways to make a new instance of this class:</p>
+<a class="header" href="#--classbuilder" id="--classbuilder"><h3>- ClassBuilder</h3></a>
+<p><code>ClassBuilder</code> allows you to build a <code>JsClass</code> and get<br />
+its constructor.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn create_class(env: &amp;Env) -&gt; JsResult&lt;JsFunction&gt; {
+    let constructor = ClassBuilder::&lt;MyClass&gt;::start_build()
+          .with_method(&quot;increment&quot;, MyClass::inc)
+          .with_method(&quot;sample&quot;, MyClass::sample)
+          .with_accessor(&quot;n&quot;, MyClass::accessor_n)
+          .create(env)?;
+    // Note that with_[method,accessor] are not necessary
+    // in our case because we implemented `default_properties`
+    // for our class. But I still write them for the
+    // example
+    
+    constructor
+}
+#}</code></pre></pre>
+<p>The <code>JsFunction</code> that <code>create_class</code> returns can be used in
+JS or Rust:</p>
+<a class="header" href="#from-js" id="from-js"><h5>From JS</h5></a>
+<pre><code class="language-javascript no_run">const module = require(&quot;./module.node&quot;);
+
+const MyClass = module.create_class();
+// Get the constructor
+
+const external_value = module.get_state();
+// The function `get_state` returns an `Arc&lt;State&gt;`
+
+const instance = new MyClass(external_value, 10);
+// The `constructor` function from `JsClass` trait has been
+// called, and we now have an instance of the class
+
+instance.increment();
+console.log(instance.n); // 11
+instance.n = 200;
+</code></pre>
+<a class="header" href="#from-rust" id="from-rust"><h5>From Rust</h5></a>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn get_instance(
+    env: &amp;Env,
+    state: Arc&lt;State&gt;
+) -&gt; JsResult&lt;JsObject&gt;
+{
+    let constructor: JsFunction = create_class(env)?;
+    constructor.new_instance((state, 10))
+    // Call the `constructor` function of the `JsClass`
+    // trait and return a new instance of the class
+}
+
+#}</code></pre></pre>
+<a class="header" href="#--t-as-jsclassnew_instance" id="--t-as-jsclassnew_instance"><h3>- &lt;T as JsClass&gt;::new_instance</h3></a>
+<p>A faster way to instanciate a JS class directly from Rust:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn get_instance(env: Env, state: Arc&lt;State&gt;)
+    -&gt; JsResult&lt;JsObject&gt;
+{
+    MyClass::new_instance(&amp;env, (state, 10))
+    // Build the class &amp; call the constructor directly
+    // Returns an instance of the class
+}
+
+#}</code></pre></pre>
+<p>With this method, you don't need to &quot;build&quot; the class<br />
+and can instantiate it directly.</p>
+<p>Note that you will have to define <code>default_properties</code>
+function.<br />
+Otherwise your class won't have properties.</p>
+<p>Also, <code>&lt;T as JsClass&gt;::new_instance</code> doesn't convert the arguments
+from/to javascript values.</p>
+<a class="header" href="#references" id="references"><h1>References</h1></a>
+<p>To keep a reference of a JS object in your Rust code, you need
+to use <code>JsRef</code></p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+struct MyClass {
+    js_object: JsRef
+}
+
+impl JsClass for MyClass {
+    ...
+}
+
+impl MyClass {
+    fn keep_object(&amp;mut self, obj: JsObject)
+        -&gt; JsResult&lt;()&gt;
+    {
+        let obj = obj.as_js_ref()?;
+        self.js_object = obj;
+    }
+}
+
+#}</code></pre></pre>
+<a class="header" href="#errors" id="errors"><h1>Errors</h1></a>
+<p>When a function returns an Err(..), it results in an exception throwns
+in Javascript.</p>
+<p>Panics in Rust also result in a exception in JS, so it won't crash
+your whole app.</p>
+<p>Errors in <code>Pinar</code> are based on the <code>failure</code> crate.<br />
+So if you want to return custom errors, you can implement
+the trait <code>Fail</code>.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+#[derive(Fail, Debug)]
+pub enum MyError {
+    #[fail(display = &quot;Invalid input !&quot;)]
+    WrongInput,
+    #[fail(display = &quot;Network error !&quot;)]
+    NetworkError,
+}
+
+fn create() -&gt; Result&lt;(), MyError&gt; {
+    Err(MyError::NetworkError)
+}
+
+// When called from Javascript, this function will throw
+// an exception with the error message &quot;Network error !&quot;
+fn method() -&gt; JsResult&lt;()&gt; {
+    create()?;
+    Err(MyError::WrongInput.into())
+}
+#}</code></pre></pre>
+<p>An exception error in the Node API consists of an error message
+and a code associated to it.
+To have more control on the exception, you can implement the
+trait <code>JsError</code>:</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// The JsError trait is defined as follow
+pub trait JsError: Fail + JsErrorAsFail {
+    fn get_msg(&amp;self) -&gt; String {
+        format!(&quot;{}&quot;, self)
+    }
+    fn get_code(&amp;self) -&gt; Option&lt;String&gt; {
+        None
+    }
+}
+
+impl JsError for MyError {
+    fn get_code(&amp;self) -&gt; Option&lt;String&gt; {
+        Some(&quot;MyError#3&quot;.to_string())
+    }
+}
+#}</code></pre></pre>
+<p>Also, the <code>Env</code> structure allow to throws different kinds of errors
+(range error, type error, ..).<br />
+See the API documentation for more details.</p>
+<a class="header" href="#multi-threading" id="multi-threading"><h1>Multi-threading</h1></a>
+<p>You can call a javascript function from differents threads
+with the help of <code>JsFunctionThreadSafe</code>.</p>
+<p>The JS function will be executed on the main thread.</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+fn method(fun: JsFunction) -&gt; JsResult&lt;()&gt; {
+    let fun = fun.make_threadsafe::&lt;(String, i64)&gt;()?;
+    
+    std::thread::spawn(move || {
+        std::thread::sleep_ms(2000);
+        fun.call((&quot;salut&quot;.to_string(), 1010));
+    });
+}
+#}</code></pre></pre>
+<a class="header" href="#promise" id="promise"><h2>Promise</h2></a>
+<p>WIP</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Overview - Pinar</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li><a href="cargo.html"><strong aria-hidden="true">2.</strong> Setup</a></li><li><a href="arguments.html"><strong aria-hidden="true">3.</strong> Arguments</a></li><li><a href="to_js.html"><strong aria-hidden="true">4.</strong> ToJs</a></li><li><a href="basic_types.html"><strong aria-hidden="true">5.</strong> JS Basic Types</a></li><li><a href="classes.html"><strong aria-hidden="true">6.</strong> Classes</a></li><li><a href="references.html"><strong aria-hidden="true">7.</strong> References</a></li><li><a href="errors.html"><strong aria-hidden="true">8.</strong> Errors</a></li><li><a href="threading.html"><strong aria-hidden="true">9.</strong> Multi-threading</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Pinar</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
+<p>Pinar is a library to write native node modules in Rust.</p>
+<p>This book is in development, pull requests are welcome.</p>
+<a class="header" href="#small-example" id="small-example"><h2>Small example</h2></a>
+<p>This snippet will introduce you to the basic features of
+Pinar, please continue to read the book for more details
+and features</p>
+<pre><pre class="playpen"><code class="language-rust no_run">
+# #![allow(unused_variables)]
+#fn main() {
+// Exported functions to Javascript
+
+// The argument is converted directly to a Rust String
+fn one_arg(arg: String) {
+    println!(&quot;received one argument: {}&quot;, arg);
+}
+
+// Multiple and optional arguments
+fn three_args(s: String, n: i64, o: Option&lt;String&gt;) {
+    println!(&quot;three_args: {:?} {:?} {:?}&quot;, s, n, o);
+}
+
+// Return values are converted to javascript automatically
+// as long as they implement the trait ToJs
+fn add(n1: usize, n2: usize) -&gt; usize {
+    n1 + n2
+}
+
+// All basic Rust types implements the trait ToJs
+fn get_object() -&gt; HashMap&lt;i64, &amp;'static str&gt; {
+    let mut map = HashMap::new();
+    map.insert(1, &quot;hello&quot;);
+    map.insert(2, &quot;from&quot;);
+    map.insert(3, &quot;rust&quot;);
+    map
+}
+
+// You can use the macro derive ToJs to implement
+// the trait automatically
+
+#[derive(Serialize, Deserialize, ToJs, FromArguments)]
+struct MyStruct {
+    a: i64,
+    b: String,
+}
+
+fn custom_type(_a: MyStruct) -&gt; MyStruct {
+    MyStruct { 
+        a: 10,
+        b: &quot;my_struct&quot;.to_string()
+    }
+}
+
+// Call javascript functions from rust:
+fn call_function(f1: JsFunction, f2: JsFunction) {
+    // 1 argument:
+    f1.call(&quot;my_parameter&quot;);
+    
+    // 3 arguments, with a tuple:
+    f1.call((1, &quot;hello&quot;, vec![1, 2, 3]));
+    
+    f2.call(Box::new(10));
+}
+
+// You can create javascript classes
+// by implementing the trait JsClass
+impl JsClass for MyStruct {
+    const CLASSNAME: &amp;'static str = &quot;MyStruct&quot;;
+    type ArgsConstructor = (i64, String);
+
+    fn constructor(arg: Self::ArgsConstructor) -&gt; Result&lt;Self&gt; {
+        Ok(MyStruct{ a: arg.0, b: arg.1 })
+    }
+}
+
+impl MyStruct {
+    // These functions will be callable from javascript
+    fn add(&amp;mut self, n: usize) -&gt; usize {
+        self.a += n;
+        self.a
+    }
+    fn get_a(&amp;mut self, _: Option&lt;usize&gt;) -&gt; usize {
+        self.a
+    }
+}
+
+register_module!(|module: ModuleBuilder| {
+    module.with_function(&quot;one_arg&quot;, one_arg)
+          .with_function(&quot;three_args&quot;, three_args)
+          .with_function(&quot;add&quot;, add)
+          .with_function(&quot;get_object&quot;, get_object)
+          .with_function(&quot;custom_type&quot;, custom_type)
+          .with_function(&quot;call_function&quot;, call_function)
+          .with_class(&quot;my_struct&quot;, || {
+              ClassBuilder::&lt;MyStruct&gt;::start_build()
+                  .with_method(&quot;add&quot;, MyStruct::add)
+                  .with_accessor(&quot;a&quot;, MyStruct::get_a)
+          })
+          .build()
+});
+
+#}</code></pre></pre>
+<p>From javascript:</p>
+<pre><code class="language-javascript no_run">const module = require(&quot;./module.node&quot;);
+
+module.one_arg(&quot;hello&quot;);
+// Print 'received one argument: hello'
+
+module.three_args(&quot;hello&quot;, 10);
+// Print three_args: (hello, 10, None)'
+
+console.log(module.add(1, 3));
+// 4
+
+console.log(module.get_object());
+// { 1: &quot;hello&quot;, 2: &quot;from&quot;, 3: &quot;rust&quot; }
+
+console.log(module.custom_type({ a: 1, b: &quot;abc&quot; )));
+// { a: 10, b: &quot;my_struct&quot; } 
+
+module.call_function(() =&gt; {}, () =&gt; {});
+
+const c = new module.my_struct(10, &quot;js&quot;);
+// create instance of the class
+
+c.add(100);
+// call the rust function
+console.log(c.a);
+// c.a calls the rust function MyStruct::get_a
+// 110
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
