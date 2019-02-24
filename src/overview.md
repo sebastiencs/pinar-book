@@ -18,20 +18,19 @@ fn one_arg(arg: String) {
     println!("received one argument: {}", arg);
 }
 
-// Multiple arguments are handled with a tuple,
-// optional arguments are possible
-fn three_args(args : (String, i64, Option<String>)) {
-    println!("three_args: {:?}", args);
+// Multiple and optional arguments
+fn three_args(s: String, n: i64, o: Option<String>) {
+    println!("three_args: {:?} {:?} {:?}", s, n, o);
 }
 
 // Return values are converted to javascript automatically
 // as long as they implement the trait ToJs
-fn add((n1, n2): (usize, usize)) -> usize {
+fn add(n1: usize, n2: usize) -> usize {
     n1 + n2
 }
 
 // All basic Rust types implements the trait ToJs
-fn get_object(_: ()) -> HashMap<i64, &'static str> {
+fn get_object() -> HashMap<i64, &'static str> {
     let mut map = HashMap::new();
     map.insert(1, "hello");
     map.insert(2, "from");
@@ -56,7 +55,7 @@ fn custom_type(_a: MyStruct) -> MyStruct {
 }
 
 // Call javascript functions from rust:
-fn call_function((f1, f2): (JsFunction, JsFunction)) {
+fn call_function(f1: JsFunction, f2: JsFunction) {
     // 1 argument:
     f1.call("my_parameter");
     

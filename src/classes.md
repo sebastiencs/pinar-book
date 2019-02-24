@@ -1,7 +1,7 @@
 # Classes
 
 You can create JS classes from Rust.  
-Every Rust structures that implement the trait `JsClass`  
+Every Rust types that implement the trait `JsClass`  
 can be use as a JS class.  
 
 The trait is defined as follow:

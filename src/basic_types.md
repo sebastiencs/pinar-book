@@ -46,7 +46,7 @@ code, so it can be retrieved later by native code
 ```
 A `JsExternal` can be created with either a `Box`, `Rc` or an `Arc`.
 ```rust, no_run
-fn return_external(_: ()) -> Box<usize> {
+fn return_external() -> Box<usize> {
     Box::new(10) // This is converted to a JsExternal
 }
 fn call_with_external(fun: JsFunction) -> JsResult<()> {

@@ -21,11 +21,11 @@ You can now return `MyCustomType` from your functions, and it will
 be converted to javascript.  
 
 ```rust, no_run
-fn custom_type(_: ()) -> MyCustomType {
+fn custom_type() -> MyCustomType {
     MyCustomType { a: 1, b: 2 } 
 }
 
-fn array(_: ()) -> Vec<usize> {
+fn array() -> Vec<usize> {
     vec![1, 2, 3]
 }
 ```

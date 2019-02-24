@@ -37,31 +37,28 @@ values that `Pinar` provides.
 ```rust, no_run
 fn my_method1(s: JsObject) {}
 
-fn my_method2((a, b): (i64, JsBigInt)) {}
+fn my_method2(a: i64, b: JsBigInt) {}
 
-fn my_method3(args: (JsNumber, JsExternal)) {}
+fn my_method3(n: JsNumber, e: JsExternal) {}
 ```
 
 ### - Multiple arguments
-
-To handle multiple arguments, you must use a tuple.  
-The order of the arguments in the tuple is important.  
 
 ```rust, no_run
 // 1 argument
 fn my_method1(s: String) {}
 
 // 3 argument
-fn my_method2((a, b, c): (i64, i64, MyCustomType)) {}
+fn my_method2(a: i64, b: i64, c: MyCustomType) {}
 
-fn my_method3((a, b): (Vec<MyCustomType>, i64)) {}
+fn my_method3(a: Vec<MyCustomType>, b: i64) {}
 
 // Optional arguments
-// You can call this function with or without a 2nd arg
-fn my_method4((a, b): (i64, Option<i64>)) {}
+// You can call this function from js with or without a 2nd arg
+fn my_method4(a: i64, b: Option<i64>) {}
 
-// With 0 argument, you need to use an empty tuple
-fn my_method5(_: ()) {}
+// With 0 argument:
+fn my_method5() {}
 ```
 
 ### Overloading
@@ -72,7 +69,7 @@ arguments:
 ```rust, no_run
 fn method1(s: String) {}
 
-fn method2((a, b): (i64, i64)) {}
+fn method2(a: i64, b: i64) {}
 
 register_module!(my_module, |module: ModuleBuilder| {
     module.with_function("my_function", method1)
@@ -91,7 +88,7 @@ The `Env` argument give you access to some methods
 to manipulate javascript values.  
 
 ```rust, no_run
-fn my_method1((env, bigint): (Env, JsBigInt))
+fn my_method1(env: Env, bigint: JsBigInt)
     -> JsResult<()>
 {
     env.throw("some error")
@@ -103,7 +100,7 @@ fn my_method1((env, bigint): (Env, JsBigInt))
 to a `JsAny`.
 
 ```rust, no_run
-fn my_method1((env, number, this): (Env, JsNumber, JsThis))
+fn my_method1(env: Env, number: JsNumber, this: JsThis)
 {
     let this: JsObject = this.as_jsobject().unwrap();
 }
